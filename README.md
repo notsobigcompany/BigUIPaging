@@ -178,9 +178,9 @@ A control that displays a horizontal series of dots, each of which corresponds
 to a page.
 
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/1da52622-d59b-4feb-b486-88a22847323e 3x">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/e1ae9f42-f60d-4dbd-83cf-be6185fc4680 3x">
-    <img alt="Page indicator" src="https://github.com/notsobigcompany/BigUIPaging/assets/595891/e1ae9f42-f60d-4dbd-83cf-be6185fc4680">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/acb748c0-a113-455c-bc77-f9f710d61168 3x">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/65e144eb-f6ac-4a4d-b447-95d9b1479e6d 3x">
+    <img alt="Page indicator" src="https://github.com/notsobigcompany/BigUIPaging/assets/595891/65e144eb-f6ac-4a4d-b447-95d9b1479e6d">
 </picture>
 
 You create a page indicator by setting the total number of pages and passing a binding to some selection state:
@@ -234,9 +234,9 @@ You can customise an indicator's icon to denote special pages, such as how the
 Weather app uses the first page to represent the user's current location:
 
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/9ae7d9b2-96cc-41b0-9f0b-f4290959ce1d 3x">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/6950c07c-b02b-4aa8-b1b9-ff89ecb52495 3x">
-    <img alt="Page indicator" src="https://github.com/notsobigcompany/BigUIPaging/assets/595891/6950c07c-b02b-4aa8-b1b9-ff89ecb52495">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/4ebfb426-0f79-4f8d-bc54-684f98c61f14 3x">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/d8d2b646-bfe1-4acb-93ce-206d4bebb5df 3x">
+    <img alt="Page indicator" src="https://github.com/notsobigcompany/BigUIPaging/assets/595891/d8d2b646-bfe1-4acb-93ce-206d4bebb5df">
 </picture>
 
 Icon customisations are provided in the form of a view builder. The first parameter represents 
