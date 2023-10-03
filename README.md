@@ -13,10 +13,10 @@ Pages can be navigated programmatically by updating the selection binding to a
 specified value or directly by the user with a gesture or action. 
 
 ## iOS
-https://github.com/notsobigcompany/BigUIPaging/assets/595891/a3e0b50b-c514-4df6-9f98-47bc1879c9d1
+https://github.com/notsobigcompany/BigUIPaging/assets/595891/e5c8ec7a-fe65-439c-9ce6-06cd617c2ecc
 
 ## macOS
-https://github.com/notsobigcompany/BigUIPaging/assets/595891/464faf45-6d3c-439f-9a62-aa1d61ac85e5
+https://github.com/notsobigcompany/BigUIPaging/assets/595891/e9284ee4-1627-4650-bb22-3d9bf548922c
 
 ## Creating a PageView
 
