@@ -1,40 +1,6 @@
 import SwiftUI
 
-/// An example of how to use page view with next and previous closures.
-struct PageViewExample: View {
-    
-    @State private var selection: Int = 1
-    
-    var body: some View {
-        PageView(selection: $selection) { value in
-            value + 1
-        } previous: { value in
-            value > 1 ? value - 1 : nil
-        } content: { value in
-            ContentView(value: value)
-        }
-    }
-    
-    struct ContentView: View {
-        
-        let value: Int
-        
-        var body: some View {
-            let _ = Self._printChanges()
-            GeometryReader { geometry in
-                ZStack(alignment: .center) {
-                    Rectangle()
-                        .fill(value % 2 != 0 ? .purple : .indigo)
-                        .ignoresSafeArea()
-                    Image(systemName: "\(value).circle.fill")
-                        .font(.system(size: geometry.size.height / 4))
-                }
-            }
-        }
-    }
-}
-
-/// An example of how to use page view with a ForEach data source.
+/// An example of how to use page view inside a NavigationStack.
 struct PageViewWithNavigationStackExample: View {
     
     var body: some View {
@@ -103,6 +69,17 @@ struct PageViewWithNavigationStackExample: View {
     }
 }
 
+// MARK: - Preview
+
+struct PageViewWithNavigationStackExample_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        PageViewWithNavigationStackExample()
+    }
+}
+
+// MARK: - Content
+
 struct MyItem: Identifiable {
     var id: Int
     
@@ -110,23 +87,6 @@ struct MyItem: Identifiable {
         (1...limit).map {
             MyItem(id: $0)
         }
-    }
-}
-
-/// All page view examples 
-struct PageViewExamples: View {
-    
-    var body: some View {
-        PageViewExample()
-            .pageViewStyle(.scroll)
-        PageViewWithNavigationStackExample()
-    }
-}
-
-struct PageViewExamples_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        PageViewExamples()
     }
 }
 

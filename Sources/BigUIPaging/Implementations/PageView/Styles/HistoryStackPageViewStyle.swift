@@ -37,7 +37,7 @@ extension PageViewStyle where Self == HistoryStackPageViewStyle {
 struct HistoryStackPageViewStyle_Previews: PreviewProvider {
     
     public static var previews: some View {
-        PageViewExample()
+        PageViewBasicExample()
             .pageViewStyle(.historyStack)
     }
 }

@@ -4,36 +4,26 @@ import SwiftUI
 
 final class BigUIPagingTests: XCTestCase {
     
-    // MARK: - NSPageController
-    
-    #if os(macOS)
-    func testArrangedObjects() {
-        let pageView = PlatformPageView(
-            selection: .constant(1),
-            configuration: .init(
-                transition: .scroll,
-                orientation: .horizontal,
-                spacing: 0
-            )
+    func testSurroundingValues() {
+        let configuration = PageViewStyleConfiguration(
+            selection: .constant(.init(1))
         ) { value in
-            value + 1
+            PageViewStyleConfiguration.Value(value.wrappedValue as! Int + 1)
         } previous: { value in
-            value - 1
+            PageViewStyleConfiguration.Value(value.wrappedValue as! Int - 1)
         } content: { value in
-            Text("\(value)")
+            PageViewStyleConfiguration.Page(Text(""))
         }
-        
-        let (objects, selectedIndex) = pageView.makeArrangedObjects(around: 5, limit: 2)
-        guard let values = objects as? [Int] else {
-            XCTFail()
-            return
-        }
+        let (configValues, selectedIndex) = configuration.values(
+            surrounding: PageViewStyleConfiguration.Value(5),
+            limit: 2
+        )
+        let values = configValues.map { $0.wrappedValue as! Int }
         XCTAssertEqual(selectedIndex, 2)
         XCTAssertEqual(values.count, 5)
         XCTAssertEqual(values.first, 3)
         XCTAssertEqual(values.last, 7)
     }
-    #endif
     
     // MARK: - SwiftUI helpers
 

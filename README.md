@@ -57,7 +57,7 @@ var body: some View {
 > A page view has no gestures or interactions by default. You must add a style 
 before you can interact with it.
 
-## Transitions and Interactions 
+## Styles and Transitions
 
 The exact navigation gesture or transition depends on the chosen style. By default
 a page view has no transitions or gestures.
@@ -69,6 +69,7 @@ Style           | iOS   | macOS
 `.book`         | ✅    | 
 `.historyStack` |       | ✅
 `.bookStack`    |       | ✅
+`.cardDeck`     | ✅    |
 
 You set a style with the view modifier:
 
@@ -81,9 +82,6 @@ PageView(selection: $selection) {
 
 Certain styles such as scroll and history bridge directly to 
 `UIPageViewController` and `NSPageController` respectively.
-
-You can create your own custom transitions and interactions by adopting
- `PageViewStyle`. 
  
 ## Page Orientation 
 
@@ -98,6 +96,7 @@ Controls such as `PageViewNavigationButton` also respond to this modifier.
  
 ## Custom Styles
 
+You can create your own completely custom page view transitions and interactions.
 To create a custom style declare a type that conforms to the `PageViewStyle` 
 protocol and implement the required `makeBody(configuration:)` method. For example, 
 here’s how the plain style is implemented:
@@ -115,10 +114,10 @@ public struct PlainPageViewStyle: PageViewStyle {
 }
 ```
 
-You use the `PageViewStyleConfiguration` structure to get access to  content,
+You use the `PageViewStyleConfiguration` structure to get access to content,
 next, previous and currently selected page.
 
-## Navigating PageView 
+## Programatic Navigation 
 
 In addition to controlling the current page with the selection binding, you can
 also use the environment's `PageViewNavigateAction` action to navigate the page 

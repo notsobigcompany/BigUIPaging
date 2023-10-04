@@ -263,7 +263,8 @@ extension PlatformPageViewConfiguration.Transition {
 struct PlatformPageView_Mac_Previews: PreviewProvider {
     
     static var previews: some View {
-        PageViewExamples()
+        PageViewBasicExample()
+            .pageViewStyle(.scroll)
     }
 }
 

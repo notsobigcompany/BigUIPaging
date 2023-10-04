@@ -264,6 +264,6 @@ extension PageViewStyleConfiguration {
 struct PageView_Previews: PreviewProvider {
     
     static var previews: some View {
-        PageViewExamples()
+        PageViewBasicExample()
     }
 }

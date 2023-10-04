@@ -41,7 +41,7 @@ extension PageViewStyle where Self == BookPageViewStyle {
 struct BookPageViewStyle_Previews: PreviewProvider {
     
     public static var previews: some View {
-        PageViewExample()
+        PageViewBasicExample()
             .pageViewStyle(.book)
     }
 }
