@@ -117,7 +117,7 @@ public struct PlainPageViewStyle: PageViewStyle {
 You use the `PageViewStyleConfiguration` structure to get access to content,
 next, previous and currently selected page.
 
-## Programatic Navigation 
+## Navigating a page view
 
 In addition to controlling the current page with the selection binding, you can
 also use the environment's `PageViewNavigateAction` action to navigate the page 

@@ -144,7 +144,7 @@ struct CardDeckPageView: View {
         let x = (Double(index) - progressIndex) * padding
         let maxIndex = pages.count - 1
         // position > 0 && position < 0.99 && index < maxIndex
-        if index == selectedIndex && progressIndex < Double(maxIndex) {
+        if index == selectedIndex && progressIndex < Double(maxIndex) && progressIndex > 0 {
             return x * swingOutMultiplier
         }
         return x
