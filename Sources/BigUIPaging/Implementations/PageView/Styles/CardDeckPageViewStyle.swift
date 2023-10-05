@@ -41,13 +41,14 @@ struct CardDeckPageView: View {
     }
     
     let configuration: Configuration
+    
     @State private var dragProgress = 0.0
     @State private var selectedIndex = 0
     @State private var pages = [Page]()
+    @State private var containerSize = CGSize.zero
+    
     @Environment(\.cardCornerRadius) private var cornerRadius
     @Environment(\.cardShadowDisabled) private var shadowDisabled
-    
-    let totalWidth = 400.0
 
     init(_ configuration: Configuration) {
         self.configuration = configuration
@@ -62,9 +63,10 @@ struct CardDeckPageView: View {
                     .offset(x: xOffset(for: page.index))
                     .scaleEffect(scale(for: page.index))
                     .rotationEffect(.degrees(rotation(for: page.index)))
-                    .shadow(color: shadow(for: page.index), radius: 40, y: 20)
+                    .shadow(color: shadow(for: page.index), radius: 30, y: 20)
             }
         }
+        .measure($containerSize)
         .scaleEffect(0.8)
         .highPriorityGesture(dragGesture)
         .task {
@@ -90,7 +92,7 @@ struct CardDeckPageView: View {
     var dragGesture: some Gesture {
         DragGesture(minimumDistance: 5)
             .onChanged { value in
-                self.dragProgress = -(value.translation.width / totalWidth)
+                self.dragProgress = -(value.translation.width / containerSize.width)
             }
             .onEnded { value in
                 snapToNearestIndex()
@@ -140,7 +142,7 @@ struct CardDeckPageView: View {
     }
     
     func xOffset(for index: Int) -> Double {
-        let padding = 35.0
+        let padding = containerSize.width / 10
         let x = (Double(index) - progressIndex) * padding
         let maxIndex = pages.count - 1
         // position > 0 && position < 0.99 && index < maxIndex
@@ -168,7 +170,7 @@ struct CardDeckPageView: View {
         }
         let index = Double(index)
         let progress = 1.0 - abs(progressIndex - index)
-        let opacity = 0.5 * progress
+        let opacity = 0.3 * progress
         return .black.opacity(opacity)
     }
 }

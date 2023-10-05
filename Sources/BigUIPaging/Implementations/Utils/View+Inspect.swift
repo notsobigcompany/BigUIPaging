@@ -2,10 +2,10 @@ import SwiftUI
 
 /// # "We always long for the forbidden things, and desire what is denied us"*
 ///
-/// Look, no one wants to poke around, but there really should be a public API for introspecting views.
-/// Without this our components can't nicely interpolate with system ones.
+/// Since there's no public API for inspecting SwiftUI structs, we need to use Mirror.
+/// No one wants to poke around, but without this our components can't nicely interpolate with system ones.
 /// I just want to know the `String` value of a `Label`. I'm not asking for the world here.
-/// Why does Tim Apple get to have all the fun? I can be trusted!
+/// Why does Tim Apple get to have all the fun? We can be trusted!
 ///
 extension View {
     

@@ -4,13 +4,15 @@ A collection of SwiftUI views for handling pages of content.
 
 - [PageView](#pageview)
 - [PageIndicator](#pageindicator)
+- [Installation](#installation)
+- [Documentation](https://opensource.notsobig.company/documentation/bigswiftui/paging)
 
 # PageView
 
 A container view that manages navigation between related views. 
 
-Pages can be navigated programmatically by updating the selection binding to a 
-specified value or directly by the user with a gesture or action. 
+Pages are navigated directly by the user with a gesture, or programmatically 
+through either the selection binding or the environment's navigation action.
 
 ## iOS
 
@@ -84,19 +86,20 @@ PageView(selection: $selection) {
 .pageViewStyle(.bookStack)
 ```
 
-Certain styles such as scroll and history bridge directly to 
+Under the hood some styles such as scroll and history bridge directly to 
 `UIPageViewController` and `NSPageController` respectively.
  
 ## Page Orientation 
 
-Certain styles such as `scroll` and `book` supports vertical and horizontal navigation.
-You can can set a page view's orientation by using the modifier: 
+Styles that support support vertical and horizontal navigation (`scroll` and `book`)
+can be configured with the orientation view modifier: 
 
 ```swift 
 .pageViewOrientation(.vertical)
 ```
 
-Controls such as `PageViewNavigationButton` also respond to this modifier.  
+Controls such as `PageViewNavigationButton` also respond to this modifier adapting 
+the chevron direction as appropriate.
  
 ## Custom Styles
 
@@ -121,7 +124,7 @@ public struct PlainPageViewStyle: PageViewStyle {
 You use the `PageViewStyleConfiguration` structure to get access to content,
 next, previous and currently selected page.
 
-## Navigating a page view
+## Navigation 
 
 In addition to controlling the current page with the selection binding, you can
 also use the environment's `PageViewNavigateAction` action to navigate the page 
@@ -156,22 +159,6 @@ PageView {
 }
 .pageViewEnvironment()
 ```
-
-## Why use PageView over TabView?
-
-PageView is intended for navigating a large number of views where all the
-pages may not be known on initial load. The next and previous closures allow
-for pages to be decided 'in flight'.
-
-PageView also handles more complex layouts correctly, such as if your app makes 
-use of a `NavigationStack` or `NavigationSplitView`. Scroll events are correctly 
-forwarded to the view hierarchy and toolbar items aren't interfered with.
-
-And by adopting `PageViewStyle` there are infinite transition and interaction 
-possibilities.
-
-Finally PageView has consistent behaviour across all platforms whereas TabView
-only supports paging on iOS.
 
 ------------------------------------------------------------------------
 
@@ -268,9 +255,9 @@ PageIndicator(selection: $selection, total: total) { (page, selected) in
 
 ------------------------------------------------------------------------
 
-## Installation 
+# Installation 
 
-BigUIPaging is available as a Swift Package. Simply add this repository to your
+BigUIPaging is available as a Swift Package. Just add this repository to your
  `Package.swift` file:
 
 ```swift 
@@ -280,11 +267,29 @@ BigUIPaging is available as a Swift Package. Simply add this repository to your
 If you’re adding to an Xcode project go to File -> Add Packages, then link
 the package to your required target.
 
-## Examples
+# Sample Code
 
-Take a look at the `Examples` folder for full samples.
+Take a look at the `Examples` folder inside the package and open the Xcode Preview Canvas.
 
-## License 
+You can also find sample code in the [documentation](https://opensource.notsobig.company/documentation/bigswiftui/paging). 
+
+# Why use PageView over TabView?
+
+PageView is intended for navigating a large number of views where all the
+pages may not be known on initial load. The next and previous closures allow
+for pages to be decided 'in flight'.
+
+PageView also handles more complex layouts correctly, such as if your app makes 
+use of a `NavigationStack` or `NavigationSplitView`. Scroll events are correctly 
+forwarded to the view hierarchy and toolbar items aren't interfered with.
+
+And by adopting `PageViewStyle` there are infinite transition and interaction 
+possibilities.
+
+Finally PageView has consistent behaviour across all platforms whereas TabView
+only supports paging on iOS.
+
+# License 
 
 Copyright 2023 NOT SO BIG TECH LIMITED
 

@@ -2,7 +2,6 @@ import SwiftUI
 
 /// An example of how to create a deck of cards.
 @available(macOS, unavailable)
-@available(iOS 17.0, *)
 struct CardDeckExample: View {
     
     @State private var selection: Int = 1
@@ -28,7 +27,6 @@ struct CardDeckExample: View {
             .onTapGesture {
                 print("Tapped card \(selection)")
             }
-            .animation(.spring, value: indicatorSelection.wrappedValue)
             
             PageIndicator(
                 selection: indicatorSelection,
@@ -36,8 +34,6 @@ struct CardDeckExample: View {
             )
             .pageIndicatorColor(.secondary.opacity(0.3))
             .pageIndicatorCurrentColor(selection.color)
-            // Optionally auto-advance to the next page
-            // .pageIndicatorDuration(5)
         }
     }
     
@@ -53,8 +49,8 @@ struct CardDeckExample: View {
 }
 
 // MARK: - Preview
+
 @available(macOS, unavailable)
-@available(iOS 17.0, *)
 struct CardDeckExample_Previews: PreviewProvider {
     
     static var previews: some View {
