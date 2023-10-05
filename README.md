@@ -16,13 +16,13 @@ through either the selection binding or the environment's navigation action.
 
 ## iOS
 
-https://github.com/notsobigcompany/BigUIPaging/assets/595891/52a3bf10-44df-4f55-a5a1-a69d587819b0
+https://github.com/notsobigcompany/BigUIPaging/assets/595891/103598f3-52f5-40a9-97f6-2b918a99b6d5
 
-https://github.com/notsobigcompany/BigUIPaging/assets/595891/b44626ef-a67b-4961-9688-866ee6f8d2e0
+https://github.com/notsobigcompany/BigUIPaging/assets/595891/9cfc72d6-6f9a-4a1f-881b-22e7da0fc318
 
 ## macOS
 
-https://github.com/notsobigcompany/BigUIPaging/assets/595891/fdc035dc-09eb-4245-aecb-61b45178c0d6
+https://github.com/notsobigcompany/BigUIPaging/assets/595891/a41b2fa5-ecfc-487f-9ad1-8adeb3a9d03f
 
 ## Creating a PageView
 
@@ -165,9 +165,9 @@ A control that displays a horizontal series of dots, each of which corresponds
 to a page.
 
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/acb748c0-a113-455c-bc77-f9f710d61168 3x">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/65e144eb-f6ac-4a4d-b447-95d9b1479e6d 3x">
-    <img alt="Page indicator" src="https://github.com/notsobigcompany/BigUIPaging/assets/595891/65e144eb-f6ac-4a4d-b447-95d9b1479e6d">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/bdc173b9-0fc2-44f4-b00e-ab155e1c5a36 3x">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/d55d512c-2025-4633-91bc-f7a948d65b9b 3x">
+    <img alt="Page indicator" src="https://github.com/notsobigcompany/BigUIPaging/assets/595891/d55d512c-2025-4633-91bc-f7a948d65b9b">
 </picture>
 
 You create a page indicator by setting the total number of pages and passing a binding to some selection state:
@@ -221,9 +221,9 @@ You can customise an indicator's icon to denote special pages, such as how the
 Weather app uses the first page to represent the user's current location:
 
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/4ebfb426-0f79-4f8d-bc54-684f98c61f14 3x">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/d8d2b646-bfe1-4acb-93ce-206d4bebb5df 3x">
-    <img alt="Page indicator" src="https://github.com/notsobigcompany/BigUIPaging/assets/595891/d8d2b646-bfe1-4acb-93ce-206d4bebb5df">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/bfcacff1-fcd9-4c83-8169-3c94fe93aa33 3x">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/notsobigcompany/BigUIPaging/assets/595891/bc052e38-9936-4ec0-b202-f43783e21cfb 3x">
+    <img alt="Page indicator" src="https://github.com/notsobigcompany/BigUIPaging/assets/595891/bc052e38-9936-4ec0-b202-f43783e21cfb">
 </picture>
 
 Icon customisations are provided in the form of a view builder. The first parameter represents 
