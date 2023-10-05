@@ -85,9 +85,6 @@ PageView(selection: $selection) {
 }
 .pageViewStyle(.bookStack)
 ```
-
-Under the hood some styles such as scroll and history bridge directly to 
-`UIPageViewController` and `NSPageController` respectively.
  
 ## Page Orientation 
 
@@ -267,13 +264,21 @@ BigUIPaging is available as a Swift Package. Just add this repository to your
 If you’re adding to an Xcode project go to File -> Add Packages, then link
 the package to your required target.
 
+## Requirements 
+
+- iOS 16.0
+- macOS 13.0
+
 # Sample Code
 
 Take a look at the `Examples` folder inside the package and open the Xcode Preview Canvas.
 
 You can also find sample code in the [documentation](https://opensource.notsobig.company/documentation/bigswiftui/paging). 
 
-# Why use PageView over TabView?
+# FAQ
+
+<details>
+<summary>Why use PageView over TabView?</summary>
 
 PageView is intended for navigating a large number of views where all the
 pages may not be known on initial load. The next and previous closures allow
@@ -288,6 +293,14 @@ possibilities.
 
 Finally PageView has consistent behaviour across all platforms whereas TabView
 only supports paging on iOS.
+</details>
+
+<details>
+<summary>Does PageView use UIPageViewController/NSPageController?</summary>
+
+Under the hood some styles such as scroll and history bridge directly to 
+`UIPageViewController` and `NSPageController` respectively.
+</details>
 
 # License 
 

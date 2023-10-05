@@ -1,11 +1,11 @@
 import SwiftUI
 
-/// A button (or a control group of buttons) that navigate a page view.s
+/// Buttons that navigate a page view.
 public struct PageViewNavigationButton: View {
     
     let direction: PageViewDirection?
     
-    /// Creates a new instance 
+    /// Creates a new button instance.
     /// - Parameter direction:If specified a single button representing that direction will
     ///  be presented instead of a group of buttons.
     public init(_ direction: PageViewDirection? = nil) {

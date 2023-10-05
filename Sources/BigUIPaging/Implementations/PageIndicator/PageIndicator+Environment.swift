@@ -1,6 +1,7 @@
 import SwiftUI
 
 @available(macOS, unavailable)
+@available(iOS 16.0, *)
 extension View {
     
     /// The tint color to apply to the page indicator.

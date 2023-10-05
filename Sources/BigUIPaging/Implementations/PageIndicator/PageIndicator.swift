@@ -2,9 +2,6 @@ import SwiftUI
 
 /// A control that displays a horizontal series of dots, each of which corresponds to a page.
 ///
-/// For an example of a page control, see the Weather app when it’s configured to display information for
-/// more than one location.
-///
 /// When a user taps a page indictor to move to the next or previous page, the control updates the selection
 /// binding. A user can also drag along the indicator to move between pages.
 ///
@@ -19,7 +16,8 @@ import SwiftUI
 ///
 /// ![PageIndicator on iOS](PageIndicator)
 ///
-/// ### Styling
+/// ## Styling
+///
 /// You can set the tint color of the indicator by using the built-in view modifiers:
 ///
 /// ```swift
@@ -38,21 +36,47 @@ import SwiftUI
 ///     .colorScheme(.dark)
 /// ```
 ///
-/// ### Custom Icons
-/// You can provide custom indicator imagery by returning an `Icon` in
-/// the ``PageIndicator/init(selection:total:icons:)`` initialiser.
+/// ## Indicator Icons
+///
+/// You can customise an indicator's icon to denote special pages, such as how the Weather app uses the
+/// first page to represent the user's current location:
+///
+/// ![PageIndicator on iOS with customised icon](PageIndicator-icons)
+///
+/// Icon customisations are provided in the form of a view builder passed to the
+/// ``PageIndicator/init(selection:total:icons:)`` initialiser.
+/// The first parameter represents the page index and the second the selected state. Here's an example that
+/// replaces the first page with a location symbol:
 ///
 /// ```swift
 /// PageIndicator(selection: $selection, total: total) { (page, selected) in
 ///     if page == 0 {
-///         return .symbol("location.fill")
-///     } else {
-///         return nil
+///         Image(systemName: "location.fill")
 ///     }
 /// }
 /// ```
 ///
-/// ![PageIndicator on iOS with customised icon](PageIndicator-icons)
+/// Here's how you might vary the icon depending on the currently selected page:
+///
+/// ```swift
+/// PageIndicator(selection: $selection, total: total) { (page, selected) in
+///     if selected {
+///         Image(systemName: "folder.fill")
+///     } else {
+///         Image(systemName: "folder")
+///     }
+/// }
+/// ```
+///
+/// ## Page Progress
+///
+/// A page indicator can automatically advance to the next page after a set duration.
+///
+/// ```swift
+/// PageIndicator...
+///     .pageIndicatorDuration(3.0)
+/// ```
+/// This can also be used to drive a ``PageView`` if the selection binding is shared between the two views.
 ///
 @available(macOS, unavailable)
 @available(iOS 16.0, *)

@@ -4,19 +4,8 @@ import SwiftUI
 ///
 /// This style mimics the behaviour of the photo stack in iMessage and Big News.
 ///
-/// ## Corner Radius
-/// You can set the corner radius of a card using the ``SwiftUI/View/pageViewCardCornerRadius(_:)``
-/// view modifier. Cards use a continuous curvature.
-///
-/// ```swift
-/// PageView...
-///     .pageViewCardCornerRadius(20)
-/// ```
-/// ## Shadow
-/// A shadow is added to the currently presented card. You can disable this with the
-/// ``SwiftUI/View/pageViewCardShadow(_:)`` view modifier.
-///
 @available(macOS, unavailable)
+@available(iOS 16.0, *)
 public struct CardDeckPageViewStyle: PageViewStyle {
     
     public init() { }
@@ -224,6 +213,7 @@ extension View {
 }
 
 @available(macOS, unavailable)
+@available(iOS 16.0, *)
 extension PageViewStyle where Self == CardDeckPageViewStyle {
     
     /// A style that presents pages as a whimsical deck of cards.
@@ -233,7 +223,6 @@ extension PageViewStyle where Self == CardDeckPageViewStyle {
 }
 
 @available(macOS, unavailable)
-@available(iOS 17.0, *)
 struct DeckPageViewStyle_Previews: PreviewProvider {
     
     public static var previews: some View {

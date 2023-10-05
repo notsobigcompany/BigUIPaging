@@ -1,5 +1,18 @@
 import SwiftUI
 
+extension View {
+    
+    /// Sets the style of the page view within the current environment.
+    public func pageViewStyle<S>(_ style: S) -> some View where S: PageViewStyle {
+        self.environment(\.pageViewStyle, style)
+    }
+    
+    /// Sets the orientation of the page view within the current environment.
+    public func pageViewOrientation(_ axis: Axis) -> some View {
+        self.environment(\.pageViewOrientation, axis)
+    }
+}
+
 extension EnvironmentValues {
     
     struct StyleKey: EnvironmentKey {

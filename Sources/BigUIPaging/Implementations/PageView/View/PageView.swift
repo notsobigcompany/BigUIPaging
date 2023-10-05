@@ -21,6 +21,7 @@ import SwiftUI
 ///     .pageViewStyle(.scroll)
 /// }
 /// ```
+///
 /// Alternatively you can you can use the next and previous closure to return a value relative to another value:
 ///
 /// ```swift
@@ -37,7 +38,7 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// ## Transitions and Styles
+/// ## Styles and Transitions
 ///
 /// The exact navigation gesture or transition depends on the chosen style. The default
 /// style is ``PlainPageViewStyle`` that has no transitions or gestures.
@@ -52,6 +53,52 @@ import SwiftUI
 ///   ```
 ///
 /// You can create your own custom transitions and interactions by adopting ``PageViewStyle``.
+///
+/// ## Page Orientation
+///
+/// Styles that support support vertical and horizontal navigation (scroll and book) can be configured with the
+/// orientation view modifier:
+///
+/// ```swift
+/// .pageViewOrientation(.vertical)
+/// ```
+/// Controls such as ``PageViewNavigationButton`` also respond to this modifier adapting the chevron
+/// direction as appropriate.
+///
+/// ## Navigation
+///
+/// In addition to controlling the current page with the selection binding, you can also use the
+/// environment's ``PageViewNavigateAction`` action to navigate the page view backwards and forwards.
+///
+/// ```swift 
+/// @Environment(\.navigatePageView) private var navigate
+/// @Environment(\.canNavigatePageView) private var canNavigate
+///
+/// var body: some View {
+///     Button {
+///         navigate(.forwards)
+///     } label: {
+///         Text("Next")
+///     }
+///     .disabled(!canNavigate.contains(.forwards))
+/// }
+/// ```
+///
+/// Included is also ``PageViewNavigationButton`` which provides standardised forwards and
+/// backwards controls:
+///
+/// ```swift
+/// PageView {
+///     ...
+/// }
+/// .toolbar {
+///     ToolbarItem {
+///         PageViewNavigationButton()
+///             .pageViewOrientation(.vertical)
+///     }
+/// }
+/// .pageViewEnvironment()
+/// ```
 ///
 public struct PageView<SelectionValue, Page>: View where SelectionValue: Hashable, Page: View {
     
