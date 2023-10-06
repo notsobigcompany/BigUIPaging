@@ -24,4 +24,12 @@ struct PlatformPageViewConfiguration {
     let transition: Transition
     let orientation: Axis
     let spacing: Double
+    let customBackgroundColor: UIColor?
+    
+    init(transition: Transition, orientation: Axis, spacing: Double, customBackgroundColor: UIColor? = nil) {
+        self.transition = transition
+        self.orientation = orientation
+        self.spacing = spacing
+        self.customBackgroundColor = customBackgroundColor
+    }
 }

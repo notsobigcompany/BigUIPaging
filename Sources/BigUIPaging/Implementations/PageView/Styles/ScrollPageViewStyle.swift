@@ -19,7 +19,8 @@ public struct ScrollPageViewStyle: PageViewStyle {
             options: .init(
                 transition: .scroll,
                 orientation: orientation,
-                spacing: spacing ?? 0
+                spacing: spacing ?? 0,
+                customBackgroundColor: .clear
             )
         )
         .makeBody(configuration: configuration)

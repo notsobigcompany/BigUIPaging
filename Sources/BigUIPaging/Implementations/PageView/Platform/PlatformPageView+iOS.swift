@@ -101,7 +101,8 @@ extension PlatformPageView {
         func makeViewController(_ value: SelectionValue) -> UIViewController {
             ContainerViewController(
                 value: value,
-                view: parent.content(value)
+                view: parent.content(value),
+                configuration: parent.configuration
             )
         }
         
@@ -144,11 +145,13 @@ extension PlatformPageView {
         
         let value: SelectionValue
         let content: Content
+        let configuration: PlatformPageViewConfiguration
         var hostingController: UIViewController?
         
-        init(value: SelectionValue, view: Content) {
+        init(value: SelectionValue, view: Content, configuration: PlatformPageViewConfiguration) {
             self.value = value
             self.content = view
+            self.configuration = configuration
             super.init(nibName: nil, bundle: nil)
         }
         
@@ -165,6 +168,9 @@ extension PlatformPageView {
                     .flexibleWidth,
                     .flexibleHeight
                 ]
+                if let backgroundColor = configuration.customBackgroundColor {
+                    hostingController.view.backgroundColor = backgroundColor
+                }
                 self.addChild(hostingController)
                 self.view.addSubview(hostingController.view)
                 self.hostingController = hostingController
