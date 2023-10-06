@@ -16,6 +16,5 @@ struct PlatformPageViewStyle: PageViewStyle {
         } content: { value in
             configuration.content(value)
         }
-        .ignoresSafeArea()
     }
 }

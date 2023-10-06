@@ -9,6 +9,7 @@ import SwiftUI
 public struct ScrollPageViewStyle: PageViewStyle {
     
     @Environment(\.pageViewOrientation) private var orientation
+    @Environment(\.pageViewSpacing) private var spacing
     
     /// Creates a new instance
     public init() { }
@@ -18,7 +19,7 @@ public struct ScrollPageViewStyle: PageViewStyle {
             options: .init(
                 transition: .scroll,
                 orientation: orientation,
-                spacing: 0
+                spacing: spacing ?? 0
             )
         )
         .makeBody(configuration: configuration)

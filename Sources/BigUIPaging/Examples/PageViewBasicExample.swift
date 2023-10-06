@@ -13,6 +13,7 @@ struct PageViewBasicExample: View {
         } content: { value in
             ExamplePage(value: value)
         }
+        .ignoresSafeArea()
         #if os(iOS)
         .overlay(alignment: .bottom) {
             PageIndicator(

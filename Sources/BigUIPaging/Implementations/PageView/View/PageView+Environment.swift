@@ -11,6 +11,13 @@ extension View {
     public func pageViewOrientation(_ axis: Axis) -> some View {
         self.environment(\.pageViewOrientation, axis)
     }
+    
+    /// Sets the spaces between pages, in points.
+    ///
+    /// This will only have effect on styles that support spacing, such as ``ScrollPageViewStyle``.
+    public func pageViewSpacing(_ spacing: Double?) -> some View {
+        self.environment(\.pageViewSpacing, spacing)
+    }
 }
 
 extension EnvironmentValues {
@@ -31,6 +38,15 @@ extension EnvironmentValues {
     var pageViewOrientation: Axis {
         get { self[OrientationKey.self] }
         set { self[OrientationKey.self] = newValue }
+    }
+    
+    struct SpacingKey: EnvironmentKey {
+        static var defaultValue: Double? = nil
+    }
+    
+    var pageViewSpacing: Double? {
+        get { self[SpacingKey.self] }
+        set { self[SpacingKey.self] = newValue }
     }
     
     struct NavigateActionKey: EnvironmentKey {

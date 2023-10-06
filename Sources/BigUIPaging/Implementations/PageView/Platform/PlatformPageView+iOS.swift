@@ -10,7 +10,7 @@ extension PlatformPageView: UIViewControllerRepresentable {
         let pageViewController = UIPageViewController(
             transitionStyle: configuration.transition.platform,
             navigationOrientation: configuration.orientation.platform,
-            options: [.interPageSpacing: configuration.spacing]
+            options: [.interPageSpacing: NSNumber(value: configuration.spacing)]
         )
         pageViewController.delegate = context.coordinator
         pageViewController.dataSource = context.coordinator
