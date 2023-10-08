@@ -18,6 +18,7 @@ struct PageViewWithNavigationStackExample: View {
         #else
         .pageViewStyle(.scroll)
         #endif
+        .pageContentBackground(.visible)
         .pageViewEnvironment()
     }
     
@@ -43,6 +44,7 @@ struct PageViewWithNavigationStackExample: View {
                         ContentView(id: item.id)
                     }
                 }
+                .ignoresSafeArea()
                 .navigationTitle("Message \(selection)")
             }
         }

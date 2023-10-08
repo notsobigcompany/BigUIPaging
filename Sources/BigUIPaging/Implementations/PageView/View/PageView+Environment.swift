@@ -18,6 +18,11 @@ extension View {
     public func pageViewSpacing(_ spacing: Double?) -> some View {
         self.environment(\.pageViewSpacing, spacing)
     }
+    
+    /// Specifies the visibility of the background of pages within this view.
+    public func pageContentBackground(_ visibility: Visibility) -> some View {
+        self.environment(\.contentBackground, visibility)
+    }
 }
 
 extension EnvironmentValues {
@@ -47,6 +52,15 @@ extension EnvironmentValues {
     var pageViewSpacing: Double? {
         get { self[SpacingKey.self] }
         set { self[SpacingKey.self] = newValue }
+    }
+    
+    struct ContentBackgroundVisibilityKey: EnvironmentKey {
+        static var defaultValue: Visibility = .automatic
+    }
+    
+    var contentBackground: Visibility {
+        get { self[ContentBackgroundVisibilityKey.self] }
+        set { self[ContentBackgroundVisibilityKey.self] = newValue }
     }
     
     struct NavigateActionKey: EnvironmentKey {

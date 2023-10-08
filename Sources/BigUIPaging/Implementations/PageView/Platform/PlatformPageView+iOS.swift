@@ -12,6 +12,7 @@ extension PlatformPageView: UIViewControllerRepresentable {
             navigationOrientation: configuration.orientation.platform,
             options: [.interPageSpacing: NSNumber(value: configuration.spacing)]
         )
+        context.coordinator.contentBackground = context.environment.contentBackground
         pageViewController.delegate = context.coordinator
         pageViewController.dataSource = context.coordinator
         pageViewController.setViewControllers(
@@ -48,6 +49,7 @@ extension PlatformPageView {
     class Coordinator: NSObject, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
         
         let parent: PlatformPageView
+        var contentBackground: Visibility = .automatic
         
         init(_ parent: PlatformPageView) {
             self.parent = parent
@@ -99,10 +101,12 @@ extension PlatformPageView {
         
         /// Creates a new container with hosting controller for a specified value.
         func makeViewController(_ value: SelectionValue) -> UIViewController {
-            ContainerViewController(
+            let viewController = ContainerViewController(
                 value: value,
-                view: parent.content(value)
+                view: parent.content(value),
+                background: contentBackground
             )
+            return viewController
         }
         
         // MARK: - Navigation
@@ -145,10 +149,16 @@ extension PlatformPageView {
         let value: SelectionValue
         let content: Content
         var hostingController: UIViewController?
+        let background: Visibility
         
-        init(value: SelectionValue, view: Content) {
+        init(
+            value: SelectionValue,
+            view: Content,
+            background: Visibility
+        ) {
             self.value = value
             self.content = view
+            self.background = background
             super.init(nibName: nil, bundle: nil)
         }
         
@@ -165,6 +175,9 @@ extension PlatformPageView {
                     .flexibleWidth,
                     .flexibleHeight
                 ]
+                if background == .hidden {
+                    hostingController.view.backgroundColor = .clear
+                }
                 self.addChild(hostingController)
                 self.view.addSubview(hostingController.view)
                 self.hostingController = hostingController
