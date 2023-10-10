@@ -107,6 +107,7 @@ public struct PageView<SelectionValue, Page>: View where SelectionValue: Hashabl
     let previous: (SelectionValue) -> SelectionValue?
     @ViewBuilder let pageContent: (SelectionValue) -> Page
     @State private var id = UUID()
+    @StateObject private var values: ValueStore
     
     /// Creates a new page view that computes its pages using closures to determine the next and previous
     /// page value.
@@ -125,6 +126,7 @@ public struct PageView<SelectionValue, Page>: View where SelectionValue: Hashabl
         self.next = next
         self.previous = previous
         self.pageContent = content
+        self._values = StateObject(wrappedValue: ValueStore(next, previous))
     }
     
     @Environment(\.pageViewStyle) private var style
@@ -141,7 +143,6 @@ public struct PageView<SelectionValue, Page>: View where SelectionValue: Hashabl
                 value: configuration.navigateAction(id)
             )
     }
-    
 }
 
 // MARK: - Convenience initialisers
@@ -232,20 +233,11 @@ extension PageView {
     
     var configuration: PageViewStyleConfiguration {
         .init(selection: configurationSelection) { value in
-            // Only we can populate this value, so force unwrapping is fine
-            if let next = next(value.wrappedValue as! SelectionValue) {
-                return .init(next)
-            } else {
-                return nil
-            }
+            values[value, 1]
         } previous: { value in
-            if let previous = previous(value.wrappedValue as! SelectionValue) {
-                return .init(previous)
-            } else {
-                return nil
-            }
+            values[value, -1]
         } content: { value in
-            return .init(pageContent(value.wrappedValue as! SelectionValue))
+            .init(pageContent(value.wrappedValue as! SelectionValue))
         }
     }
     
@@ -307,6 +299,60 @@ extension PageViewStyleConfiguration {
         return directions
     }
 }
+
+// MARK: - Caching 
+
+extension PageView {
+    
+    /// A cache for next and previous values.
+    @MainActor class ValueStore: ObservableObject {
+        
+        typealias Value = PageViewStyleConfiguration.Value
+        
+        struct Key: Hashable {
+            let value: SelectionValue
+            let offset: Int
+        }
+        
+        var cache = [Key: SelectionValue?]()
+        let next: (SelectionValue) -> SelectionValue?
+        let previous: (SelectionValue) -> SelectionValue?
+        
+        init(
+            _ next: @escaping (SelectionValue) -> SelectionValue?,
+            _ previous: @escaping (SelectionValue) -> SelectionValue?
+        ) {
+            self.next = next
+            self.previous = previous
+        }
+        
+        subscript(value: SelectionValue, offset: Int) -> SelectionValue? {
+            get {
+                let key = Key(value: value, offset: offset)
+                if let cached = cache[key] {
+                    return cached
+                }
+                let closure = offset == 1 ? next : previous
+                let nextValue = closure(value)
+                cache[key] = nextValue
+                return nextValue
+            }
+        }
+        
+        subscript(value: Value, offset: Int) -> Value? {
+            get {
+                guard let value = value.wrappedValue as? SelectionValue else {
+                    return nil
+                }
+                guard let nextValue = self[value, offset] else {
+                    return nil
+                }
+                return .init(nextValue)
+            }
+        }
+    }
+}
+
 
 struct PageView_Previews: PreviewProvider {
     
