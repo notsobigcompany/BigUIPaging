@@ -25,10 +25,13 @@ struct ExampleGridToPageView: View {
                             Color.clear
                         } else {
                             ExampleCardPage(value: id)
-                                .aspectRatio(0.7, contentMode: .fit)
-                            // Keep the selected card on top
+                                // Keep the selected card on top
                                 .zIndex(id == selection ? 100 : 0.0)
-                                .matchedGeometryEffect(id: id, in: transition)
+                                .matchedGeometryEffect(
+                                    id: id,
+                                    in: transition
+                                )
+                                .aspectRatio(1.0, contentMode: .fit)
                                 .onTapGesture {
                                     // Keep track of which card we opened with so
                                     // we know if user has swiped in PageView.
@@ -66,9 +69,12 @@ struct ExampleGridToPageView: View {
                 }
                 .pageViewStyle(.scroll)
                 .pageViewSpacing(15)
-                .aspectRatio(0.7, contentMode: .fit)
                 .cardMask()
-                .matchedGeometryEffect(id: selection, in: transition)
+                .matchedGeometryEffect(
+                    id: selection,
+                    in: transition
+                )
+                .aspectRatio(0.7, contentMode: .fit)
                 .dragToDismiss($isOpen, progress: $dismissProgress)
                 // We need a transition to prevent the opacity transition.
                 // Scale works, but for whatever reason 1.0 gives us a flash.
@@ -78,6 +84,7 @@ struct ExampleGridToPageView: View {
                 }
             }
         }
+//        .animation(.easeInOut(duration: 2), value: isOpen)
         .animation(.spring(response: 0.4, dampingFraction: 0.8), value: isOpen)
         #if os(macOS)
         .frame(minWidth: 300, minHeight: 300)

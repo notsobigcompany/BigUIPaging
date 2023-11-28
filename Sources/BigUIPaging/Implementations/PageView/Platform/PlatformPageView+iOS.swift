@@ -29,11 +29,13 @@ extension PlatformPageView: UIViewControllerRepresentable {
         context: Context
     ) {
         let isAnimated = context.transaction.animation != nil
-        context.coordinator.go(
-            to: selection,
-            in: pageViewController,
-            animated: isAnimated
-        )
+        DispatchQueue.main.async {
+            context.coordinator.go(
+                to: selection,
+                in: pageViewController,
+                animated: isAnimated
+            )
+        }
         fixNavigationControllerContentScrollView(pageViewController)
     }
     
